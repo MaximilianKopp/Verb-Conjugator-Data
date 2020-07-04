@@ -48,7 +48,7 @@ class SubjunctiveImpl(private var verb: Verb) : Subjunctive {
         var conjugation = PERSONAL_PRONOUNS.zip(AUXILIAR_SUBJ_ONE_WERDEN) { a, b -> "$a $b" }.toMutableList()
         if (verb.reflexivity == "reflexive" && verb.auxiliary != "sein")
             conjugation = conjugation.zip(REFLEXIVE_PRONOUNS) { a, b -> "$a $b" }.toMutableList()
-        conjugation = conjugation.map { "$it ${verb.pastparticiple} ${verb.auxiliary}" }.toMutableList()
+        conjugation = conjugation.map { "$it ${verb.prefix}${verb.pastparticiple} ${verb.auxiliary}" }.toMutableList()
         return conjugation.joinToString("\n")
     }
 

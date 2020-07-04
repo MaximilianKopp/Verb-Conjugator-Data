@@ -44,6 +44,7 @@ class DataLoader {
             }
             gzipOutputStream.finish()
             gzipOutputStream.close()
+
         }
 
         fun complete(): MutableMap<String, MutableList<MutableMap<String, String>>> {

@@ -6,11 +6,11 @@ import mode.Participle
 class ParticipleImpl(private var verb: Verb) : Participle {
 
     override fun one(): String {
-        return "${verb.reduceStem()}${setEnding()}"
+        return "${verb.prefix}${verb.reduceStem()}${setEnding()}"
     }
 
     override fun two(): String {
-        return verb.pastparticiple
+        return "${verb.prefix}${verb.pastparticiple}"
     }
 
     private fun setEnding(): String {

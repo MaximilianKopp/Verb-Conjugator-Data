@@ -52,7 +52,7 @@ class IndicativeImpl(private val verb: Verb) : Indicative {
         var conjugation = PERSONAL_PRONOUNS.zip(AUXILIARY_IND_FUTURE_WERDEN) { a, b -> "$a $b" }.toMutableList()
         if (verb.reflexivity == "reflexive")
             conjugation = conjugation.zip(REFLEXIVE_PRONOUNS) { a, b -> "$a $b" }.toMutableList()
-        conjugation = conjugation.map { "$it ${verb.pastparticiple} ${verb.auxiliary}" }.toMutableList()
+        conjugation = conjugation.map { "$it ${verb.prefix}${verb.pastparticiple} ${verb.auxiliary}" }.toMutableList()
         return conjugation.joinToString("\n")
     }
 
@@ -101,8 +101,10 @@ class IndicativeImpl(private val verb: Verb) : Indicative {
                     verb.getStemEnding() == "d" && verb.stemalternation != "" -> return PRESENT_STEM_D_SOUND_WITHALTER
                     verb.getStemEnding() == "t" && verb.stemalternation != "" -> return PRESENT_STEM_T_SOUND_WITHALTER
                     ((verb.getStemEnding() == "tm" || verb.getStemEnding() == "ffn" || verb.getStemEnding() == "chn")) -> return PRESENT_STEM_MN_SOUND
-                    verb.infinitive.reversed().startsWith("ned") || verb.infinitive.reversed().startsWith("net") -> return IND_PRESENT_DENTAL
-                    verb.infinitive.reversed().startsWith("nen") || verb.infinitive.reversed().startsWith("nem") -> return IND_PRESENT_NASAL
+                    verb.infinitive.reversed().startsWith("ned") || verb.infinitive.reversed()
+                        .startsWith("net") -> return IND_PRESENT_DENTAL
+                    verb.infinitive.reversed().startsWith("nen") || verb.infinitive.reversed()
+                        .startsWith("nem") -> return IND_PRESENT_NASAL
                 }
                 when (verb.ending) {
                     "en" -> return IND_PRESENT_EN
