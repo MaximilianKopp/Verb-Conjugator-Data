@@ -86,6 +86,7 @@ class DataLoader {
                     tenseMap["separability"] = metadata.separability
                     tenseMap["pastform"] = metadata.pastform
                     tenseMap["pastparticiple"] = metadata.pastparticiple
+                    tenseMap["translation"] = metadata.translation
                     tenseList.add(tenseMap)
                     modesMap["verben"] = tenseList
                     tenseMap = linkedMapOf()

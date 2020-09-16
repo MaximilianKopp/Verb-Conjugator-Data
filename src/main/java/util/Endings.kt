@@ -126,6 +126,15 @@ val PRESENT_STEM_MN_SOUND = mutableListOf(
     "en"
 )
 
+val PRESENT_STEM_PRETERITE_PRESENT = mutableListOf(
+    "",
+    "st",
+    "",
+    "en",
+    "t",
+    "en"
+)
+
 // Präteritum Endings Indicative
 val IND_PAST_EN = mutableListOf(
     "te",

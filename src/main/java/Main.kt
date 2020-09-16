@@ -1,8 +1,8 @@
 import data.DataLoader
 
 fun main() {
-    
-    DataLoader.jsonWriter(DataLoader.complete())
+    //Kommentier das nicht aus sonst werden die Modalverb Änderungen überschrieben!!!!
+    //DataLoader.jsonWriter(DataLoader.complete())
     DataLoader.compressData()
 }
 

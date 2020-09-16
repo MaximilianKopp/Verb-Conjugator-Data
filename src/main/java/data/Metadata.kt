@@ -8,4 +8,5 @@ data class Metadata(private var verb: Verb) {
     val separability = verb.separability
     val pastform = verb.past
     val pastparticiple = verb.pastparticiple
+    val translation = verb.translation
 }

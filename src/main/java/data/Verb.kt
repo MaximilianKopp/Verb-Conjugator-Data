@@ -1,5 +1,6 @@
 package data
 
+import util.*
 import java.lang.StringBuilder
 
 data class Verb(
@@ -13,7 +14,8 @@ data class Verb(
     var reflexivity: String,
     var verbclass: String,
     var complexity: String,
-    var separability: String
+    var separability: String,
+    var translation: String
 ) {
 
     fun reduceStem(): String {
@@ -30,13 +32,17 @@ data class Verb(
     fun reduceStemTest(): MutableList<String> {
         return mutableListOf<String>()
             .apply {
-                val stem = StringBuilder(infinitive).apply {
-                    reverse()
-                    replace(0, ending.length, "")
-                    reverse()
-                }
+                var stem =
+                    StringBuilder(infinitive).apply {
+                        reverse()
+                        replace(0, ending.length, "")
+                        reverse()
+                    }
                 if (separability == "separable")
                     prefix?.length?.let { stem.delete(0, it) }
+
+                if (verbclass == "preterite_present")
+                    stem = checkPreteritePresent()
 
 
                 repeat((0..5).count()) {
@@ -53,6 +59,20 @@ data class Verb(
                 }
 
             }.toMutableList()
+    }
+
+    private fun checkPreteritePresent(): StringBuilder {
+        return when (infinitive) {
+            "dürfen" -> StringBuilder(IND_PRETERITE_PRESENT_DUERFEN)
+            "können" -> StringBuilder(IND_PRETERITE_PRESENT_KOENNEN)
+            "möchten" -> StringBuilder(IND_PRETERITE_PRESENT_MOECHTE)
+            "mögen" -> StringBuilder(IND_PRETERITE_PRESENT_MOEGEN)
+            "müssen" -> StringBuilder(IND_PRETERITE_PRESENT_MUESSEN)
+            "sollen" -> StringBuilder(IND_PRETERITE_PRESENT_SOLLEN)
+            "wissen" -> StringBuilder(IND_PRETERITE_PRESENT_WISSEN)
+            "wollen" -> StringBuilder(IND_PRETERITE_PRESENT_WOLLEN)
+            else -> null!!
+        }
     }
 
     private fun checkStemAlternation(reducedStem: String): String {
